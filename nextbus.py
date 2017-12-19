@@ -2,20 +2,20 @@
 
 import sys
 
-print('Command Options:', sys.argv)
-# holds Argument that is passed while using script in command line
-raise SystemExit(0)
-# To exit the pra
+if len(sys.argv) !=3:
+    raise SystemExit('Usage: nextbus.py route stopid')
+route = sys.argv[1]
+stopid = sys.argv[2]
 
 
 import urllib.request
-u = urllib.request.urlopen('http://ctabustracker.com/bustime/map/getStopPredictions.jsp?stop=14787&route=22')
+u = urllib.request.urlopen('http://ctabustracker.com/bustime/map/getStopPredictions.jsp?stop={}&route={}'.format(stopid,route))
 data = u.read()
-print(data)
+#print(data)
 
 from xml.etree.ElementTree import XML
 doc = XML(data)
-print(doc)
+#print(doc)
 
 for pt in doc.findall('.//pt'):
     print(pt.text)
