@@ -1,3 +1,9 @@
+import sys
+
+print('Command Options:', sys.argv)
+# raise SystemExit(0)
+# holds Argument that is passesd while using script in command line
+
 import urllib.request
 u = urllib.request.urlopen('http://ctabustracker.com/bustime/map/getStopPredictions.jsp?stop=14787&route=22')
 data = u.read()
